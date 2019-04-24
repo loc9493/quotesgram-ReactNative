@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, FlatList, Text } from 'react-native'
+import { Button, FlatList, Text, StyleSheet } from 'react-native'
 import QuoteCell from './QuoteCell'
 
 export default class HomeScreen extends React.Component {
@@ -14,6 +14,13 @@ export default class HomeScreen extends React.Component {
     }
     static navigationOptions = {
         title: 'Quotesgram',
+        headerStyle: {
+            backgroundColor: '#000',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }
     };
 
     fetchQuotes() {
@@ -37,6 +44,7 @@ export default class HomeScreen extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <FlatList
+                style={styles.container}
                 data={this.state.list}
                 keyExtractor={(item) => item.ID.toString()}
                 renderItem={({ item }) => <QuoteCell item={item} key={item.ID}></QuoteCell>}
@@ -44,3 +52,9 @@ export default class HomeScreen extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "#000"
+    }
+  })
